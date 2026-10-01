@@ -1,0 +1,3 @@
+# Personal financial data must never be published
+*.xlsx
+finplan-backup-*.json

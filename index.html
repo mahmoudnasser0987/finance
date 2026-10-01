@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; worker-src 'self'">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Finance">
+  <meta name="theme-color" content="#0f766e">
+  <title>Financial Plan</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar"><h1 id="title">My Money</h1></header>
+  <main id="view"></main>
+
+  <button id="fab" class="fab" data-action="add-exp" aria-label="Add expense" hidden>+</button>
+
+  <nav class="tabbar">
+    <button data-view="home" class="active">
+      <svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home
+    </button>
+    <button data-view="plan">
+      <svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Plan
+    </button>
+    <button data-view="tracker">
+      <svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg>Tracker
+    </button>
+    <button data-view="settings">
+      <svg viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>Settings
+    </button>
+  </nav>
+
+  <div id="sheet" class="sheet" hidden>
+    <form id="expForm" class="sheet-card" autocomplete="off" novalidate>
+      <div class="sheet-head">
+        <button type="button" class="link" data-action="close-sheet">Cancel</button>
+        <b id="sheetTitle">Add expense</b>
+        <span class="link-spacer"></span>
+      </div>
+      <input id="expAmount" class="amount-input" inputmode="decimal" placeholder="0.00" aria-label="Amount">
+      <div id="expEq" class="small muted center"></div>
+      <div class="seg" id="expCurrency">
+        <button type="button" data-v="USD">USD</button>
+        <button type="button" data-v="EGP">EGP</button>
+      </div>
+      <div class="seg" id="expCategory">
+        <button type="button" data-v="essential">Essentials</button>
+        <button type="button" data-v="fun">Guilt-free</button>
+      </div>
+      <input id="expNote" placeholder="Note (optional)" maxlength="80" aria-label="Note">
+      <input id="expDate" type="date" aria-label="Date">
+      <button type="submit" class="btn primary">Save</button>
+      <button type="button" class="btn danger" id="expDelete" hidden>Delete expense</button>
+    </form>
+  </div>
+
+  <input type="file" id="fileXlsx" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
+  <input type="file" id="fileJson" accept=".json,application/json" hidden>
+</body>
+</html>
